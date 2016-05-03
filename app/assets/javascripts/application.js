@@ -12,5 +12,16 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
+
+var on_ready = function() {
+  $(".js-option").on("change", function() {
+    var $this = $(this)
+    var $child_options = $this.parent(".js-option-label").siblings(".js-child-options")
+    $child_options.slideToggle()
+    if( ! $this.is(":checked") ) $("input[type=checkbox]", $child_options).attr('checked', false)
+  })
+}
+
+$(document).ready(on_ready);
+$(document).on("page:load", on_ready)

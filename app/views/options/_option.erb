@@ -1,0 +1,13 @@
+<div class="item <%= 'top_level' if option.top_level? %>">
+  <div class="content">
+    <%= option.name %>
+  </div>
+
+  <% if option.child_options.size > 0 %>
+    <div class="list">
+      <% option.child_options.each do |option| %>
+        <%= render "options/option", option: option %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Options</h1>
+
+<%= link_to 'New Option', new_option_path, class: "ui primary button" %>
+
+<table class="ui table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Children</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @options.each do |option| %>
+      <tr>
+        <td><%= option.name %></td>
+        <td><%= link_to option.child_options.count, option %></td>
+        <td><%= render option.child_options %></td>
+        <td>
+          <%= link_to 'Show', option, class: "ui button" %>
+          <%= link_to 'Edit', edit_option_path(option), class: "ui primary button" %>
+          <%= link_to 'Destroy', option, method: :delete, class: "ui red button", data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

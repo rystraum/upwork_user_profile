@@ -1,0 +1,24 @@
+<%= form_for(profile, url: profile_update_options_path(profile), html: { class: "ui form" }) do |f| %>
+  <%= f.submit "Save Options", class: "ui primary button" %>
+  <br><br><br>
+  <% options = Option.includes(:child_options).top_level.order("id asc") %>
+  <% options.in_groups_of(4).each do |options| %>
+    <div class="fields">
+      <% options.each do |option| %>
+        <div class="four wide field">
+          <label class="js-option-label">
+            <%= check_box_tag "option_id[]", option.id, option.id.to_s.in?(profile.selected_option_ids), class: "js-option" %> <%= option.name %>
+          </label>
+          <% selected_css = option.id.to_s.in?(profile.selected_option_ids) ? "style='display: block'" : "" %>
+          <div class="js-child-options" <%= selected_css.html_safe %>>
+            <% option.child_options.each do |option| %>
+              <label style="display: block">
+                <%= check_box_tag "option_id[]", option.id, option.id.to_s.in?(profile.selected_option_ids), class: "js-option" %> <%= option.name %>
+              </label>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

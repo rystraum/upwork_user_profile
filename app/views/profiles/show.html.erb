@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<h1 class="ui header"><%= @profile.name %> <%= link_to 'Change Name', edit_profile_path(@profile), class: "ui mini link button" %></h1>
+
+<% if @profile.selected_options.present? %>
+  <% top_selected = Option.where(id: @profile.selected_options).top_level %>
+  <% selected = Option.where(id: @profile.selected_options) %>
+  <% top_selected.each do |option| %>
+    <ul>
+      <li>
+        <%= option.name %>
+        <ul>
+          <% selected.each do |opt| %>
+            <% next if opt.parent_option_id != option.id %>
+            <li><%= opt.name %></li>
+          <% end %>
+        </ul>
+      </li>
+    </ul>
+  <% end %>
+  <%= link_to "Change Selected Options", profile_edit_selected_options_path(@profile), class: "ui button" %>
+<% else %>
+  <%= render "profiles/options_select", profile: @profile %>
+<% end %>
