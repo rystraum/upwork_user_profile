@@ -5,3 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+200.times.each do |n|
+  o = Option.create(name: n.to_words.parameterize)
+  10.times.each do |m|
+    o.child_options.create(name: "#{m.to_words.parameterize} of #{o.name}")
+  end
+end
