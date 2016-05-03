@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160503093450) do
+ActiveRecord::Schema.define(version: 20160503164008) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "options", force: :cascade do |t|
     t.string   "name"
@@ -20,6 +23,13 @@ ActiveRecord::Schema.define(version: 20160503093450) do
     t.datetime "updated_at",       null: false
   end
 
-  add_index "options", ["parent_option_id"], name: "index_options_on_parent_option_id"
+  add_index "options", ["parent_option_id"], name: "index_options_on_parent_option_id", using: :btree
+
+  create_table "profiles", force: :cascade do |t|
+    t.string   "name"
+    t.json     "selected_options"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
 
 end
