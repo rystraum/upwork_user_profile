@@ -5,6 +5,13 @@
   <%= @option.name %>
 </p>
 
+<% if @option.parent_option %>
+<p>
+  <strong>Parent:</strong>
+  <%= link_to @option.parent_option.name, @option.parent_option %>
+</p>
+<% end %>
+
 <strong>Children:</strong>
 <table class="ui table">
   <thead>

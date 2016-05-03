@@ -5,7 +5,7 @@ class OptionsController < ApplicationController
   # GET /options.json
   def index
     # @options = Option.includes(:child_options).top_level
-    @options = Option.includes(:child_options).top_level
+    @options = Option.includes(:child_options).top_level.order("id asc")
   end
 
   # GET /options/1
