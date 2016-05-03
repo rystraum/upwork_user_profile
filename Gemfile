@@ -1,3 +1,5 @@
+#ruby=2.2.3
+#ruby-gemset=upwork-user-profile
 source 'https://rubygems.org'
 
 
@@ -28,6 +30,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use Unicorn as the app server
 # gem 'unicorn'
+gem 'to_words'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
